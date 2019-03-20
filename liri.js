@@ -27,18 +27,23 @@ runLIRI(command,commandValue);
 function runLIRI(command,commandValue){
 	//console.log("command",command);
 	//console.log("commandValue",commandValue);
+
 	switch(command) {
 	  case "concert-this":
 	    concertThis(commandValue);
+	    logThis(command,commandValue);
 	    break;
 	  case "spotify-this-song":
 	    spotifyThis(commandValue);
+	    logThis(command,commandValue);
 	    break;
 	  case "movie-this":
 	    omdbThis(commandValue);
+	    logThis(command,commandValue);
 	    break;
 	  case "do-what-it-says":
 	    doWhatItSays();
+	    logThis(command,"random");
 	    break;
 	  default:
 	    console.error(`
@@ -61,6 +66,25 @@ function printHeader(number){
 	} else {
 		console.log(`${divider} [//]`);
 	}
+}
+
+function logThis(command,value){
+
+	var text = `${command},"${value}";`;
+	
+	fs.appendFile("log.txt", text, function(err) {
+
+  	// If an error was experienced we will log it.
+	  if (err) {
+	    console.log(err);
+	  }
+	  // If no error is experienced, we'll log the phrase "Content Added" to our node console.
+	  else {
+	    //console.log("Content Added!");
+	  }
+
+	});
+	return false;
 }
 
 function doWhatItSays(){
@@ -162,9 +186,9 @@ function spotifyThis(input){
 			printHeader();
 
 		});
-
 		
 	} else {
+
 		console.error("Invalid input for spotify-this-song... for now here is 'The Sign' by Ace of Base");
 		spotifyThis("The Sign by Ace of Base");
 
