@@ -1,7 +1,8 @@
 require("dotenv").config();
-const axios = require('axios');
-const moment = require('moment');
-var Spotify = require('node-spotify-api');
+const 	axios = require('axios');
+const 	moment = require('moment');
+var 	fs 	= require("fs");
+var 	Spotify = require('node-spotify-api');
 
 // import the keys for APIs
 var keys = require("./keys.js");
@@ -21,29 +22,37 @@ var command = userInput[2];
 var commandValue = userInput[3];
 //console.log("commandValue",commandValue);
 
-switch(command) {
-  case "concert-this":
-    concertThis(commandValue);
-    break;
-  case "spotify-this-song":
-    spotifyThis(commandValue);
-    break;
-  case "movie-this":
-    omdbThis(commandValue);
-    break;
-  case "do-what-it-says":
-    doWhatItSays();
-    break; 
-  default:
-    console.error(`
-    	I'M SORRY I DO NOT KNOW WHAT YOU ADDED, USE THESE SPECIFIC COMMANDS
-    	--------------------------------------------------------------------
-    	node liri concert-this '<artist/band name here>'
-    	node liri spotify-this-song '<song name here>'
-    	node liri movie-this '<movie name here>'
-    	node liri do-what-it-says
-    `)
+runLIRI(command,commandValue);
+
+function runLIRI(command,commandValue){
+	//console.log("command",command);
+	//console.log("commandValue",commandValue);
+	switch(command) {
+	  case "concert-this":
+	    concertThis(commandValue);
+	    break;
+	  case "spotify-this-song":
+	    spotifyThis(commandValue);
+	    break;
+	  case "movie-this":
+	    omdbThis(commandValue);
+	    break;
+	  case "do-what-it-says":
+	    doWhatItSays();
+	    break;
+	  default:
+	    console.error(`
+	    	I'M SORRY I DO NOT KNOW WHAT YOU ADDED, USE THESE SPECIFIC COMMANDS
+	    	--------------------------------------------------------------------
+	    	node liri concert-this '<artist/band name here>'
+	    	node liri spotify-this-song '<song name here>'
+	    	node liri movie-this '<movie name here>'
+	    	node liri do-what-it-says
+	    `);
+	    break;
+	}
 }
+
 
 function printHeader(number){
 	var divider = "-------------------------------------------------------------------";
@@ -56,7 +65,24 @@ function printHeader(number){
 
 function doWhatItSays(){
 
-	console.log("FS here");
+	fs.readFile("./random.txt", "utf8", function(err, data) {
+	  if (err) {
+	    return console.log(err);
+	  }
+
+	  // Break the string down by comma separation and store the contents into the output array.
+	  var output = data.split(";");
+	  //console.log('output',output);
+	  var random = Math.floor(Math.random()*output.length);
+	  //console.log('random', random);
+	  var entry = output[random].split(",");
+	  var command = entry[0].trim();
+	  var commandValue = entry[1].trim().replace(/\"/g,'');
+	  printHeader();
+	  console.log(`LOADING A RANDOM ENTRY <node liri ${command} "${commandValue}">`);
+	  runLIRI(command,commandValue);
+
+	});
 
 }
 
@@ -99,10 +125,8 @@ function omdbThis(input){
 		  }
 		);
 	} else {
-
 		console.error("Invalid input for movie-this... for now here is MR. Nobody");
 		omdbThis("Mr. Nobody");
-
 	}
 
 }
@@ -151,10 +175,9 @@ function spotifyThis(input){
 function concertThis(input){
 
 	if(input){
-
 		var artist = input.trim();
 		var url = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
-
+		//console.log('url',url);
 		axios.get(url)
 		  .then(function (response) {
 		    // handle success
