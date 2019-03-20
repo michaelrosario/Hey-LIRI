@@ -29,29 +29,84 @@ switch(command) {
     spotifyThis(commandValue);
     break;
   case "movie-this":
-    // code block
+    omdbThis(commandValue);
     break;
   case "do-what-it-says":
-    // code block
+    doWhatItSays();
     break; 
   default:
     console.error(`
-    	I'M SORRY I DO NOT KNOW WHAT YOU ADDED, USE THESE SPECIFIC COMMANDS:
+    	I'M SORRY I DO NOT KNOW WHAT YOU ADDED, USE THESE SPECIFIC COMMANDS
+    	--------------------------------------------------------------------
     	node liri concert-this '<artist/band name here>'
     	node liri spotify-this-song '<song name here>'
     	node liri movie-this '<movie name here>'
     	node liri do-what-it-says
-
     `)
 }
 
 function printHeader(number){
+	var divider = "-------------------------------------------------------------------";
 	if(number){
-		console.log(`=================================================================== [${number < 10 ? "0"+number : number }]`);
+		console.log(`${divider} [${number < 10 ? "0"+number : number }]`);
 	} else {
-		console.log(`=================================================================== [//]`);
+		console.log(`${divider} [//]`);
 	}
 }
+
+function doWhatItSays(){
+
+	console.log("FS here");
+
+}
+
+// This uses the OMDB API to search for movies
+function omdbThis(input){
+
+	if(input){
+	
+		var movieName = input.trim().replace(/\s/g, '+');
+
+		// Then run a request with axios to the OMDB API with the movie specified
+		var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey="+omdb.key;
+
+		// This line is just to help us debug against the actual URL.
+		//console.log(queryUrl);
+
+		axios.get(queryUrl).then(
+		  function(response) {
+		  	printHeader();
+		  	console.log(`RESULTS FOR <${input.toUpperCase()}>`)
+		  	printHeader();
+		  	var result = response.data;
+		  	//console.log(result);
+		    console.log("Title: " + result.Title);
+		    console.log("Year: " + result.Year);
+		    for(var i = 0; i < result.Ratings.length; i++){
+		    	var rating = result.Ratings[i];
+		    	if(rating.Source == "Internet Movie Database"){
+		    		console.log(`IMDB Rating: ${result.Ratings[i].Value}`);
+		    	}
+		    	if(rating.Source == "Rotten Tomatoes"){
+		    		console.log(`${result.Ratings[i].Source} Rating: ${result.Ratings[i].Value}`);
+		    	}
+		    }
+		    console.log("Country: " + result.Country);
+		    console.log("Language: " + result.Language);
+		    console.log("Plot: " + result.Plot);
+		    console.log("Actors: " + result.Actors);
+		    printHeader();
+		  }
+		);
+	} else {
+
+		console.error("Invalid input for movie-this... for now here is MR. Nobody");
+		omdbThis("Mr. Nobody");
+
+	}
+
+}
+
 
 // This function uses the Spotify API to get song information
 // Documentation: https://www.npmjs.com/package/node-spotify-api
@@ -86,7 +141,9 @@ function spotifyThis(input){
 
 		
 	} else {
-		console.error("Invalid input for spotify-this-song");
+		console.error("Invalid input for spotify-this-song... for now here is 'The Sign' by Ace of Base");
+		spotifyThis("The Sign by Ace of Base");
+
 	}
 }
 
