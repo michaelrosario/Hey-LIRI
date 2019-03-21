@@ -6,13 +6,21 @@
  ### Commands
 
 *`node liri.js concert-this <artist/band name here>`*<br>
-	This will search the Bands in Town Artist Events API and provide the `Venue name`, `Venue location`, and `Date of the Event`
+	This will search the Bands in Town Artist Events API and provide the `Venue name`, `Venue location`, and `Date of the Event`<br>
+
+##### View Video:
 [![concert-this](https://img.youtube.com/vi/DAic-IU_t0k/0.jpg)](https://www.youtube.com/watch?v=DAic-IU_t0k)
+
+<hr>
 
 
 *`node liri.js spotify-this-song '<song name here>'`*<br>
-	This will show the following information about the song using the Spotify API.  It will display a list of albums with that song title, displaying `artist(s)`, `title`, `album name`, and `preview URL`
+	This will show the following information about the song using the Spotify API.  It will display a list of albums with that song title, displaying `artist(s)`, `title`, `album name`, and `preview URL`<br>
+
+##### View Video:
 [![spotify-this-song](https://img.youtube.com/vi/6zUWpWTGNL8/0.jpg)](https://www.youtube.com/watch?v=6zUWpWTGNL8)
+
+<hr>
 
 *`node liri.js movie-this '<movie name here>'`*<br>
 	This will output information about the movie using the OMDB API.  The following information will be displayed:
@@ -23,14 +31,18 @@
        * Country where the movie was produced.
        * Language of the movie.
        * Plot of the movie.
-       * Actors in the movie.
+       * Actors in the movie.<br>
+
+##### View Video:
 [![movie-this](https://img.youtube.com/vi/Kg0H4bK9FIc/0.jpg)](https://www.youtube.com/watch?v=Kg0H4bK9FIc)
 
+<hr>
 
 *`node liri.js do-what-it-says`*<br>
-	This runs a random command that is stored on the `random.txt` file
-[![movie-this](https://img.youtube.com/vi/JYgCcQ2ld4w/0.jpg)](https://www.youtube.com/watch?v=JYgCcQ2ld4w)
+	This runs a random command that is stored on the `random.txt` file<br>
 
+##### View Video:
+[![movie-this](https://img.youtube.com/vi/JYgCcQ2ld4w/0.jpg)](https://www.youtube.com/watch?v=JYgCcQ2ld4w)
 
 <br>
 ##### The Random File:
