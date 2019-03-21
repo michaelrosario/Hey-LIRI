@@ -5,13 +5,13 @@
 
  ### Commands
 
-*`node liri.js concert-this <artist/band name here>`*
+*`node liri.js concert-this <artist/band name here>`*<br>
 	This will search the Bands in Town Artist Events API and provide the `Venue name`, `Venue location`, and `Date of the Event`
 
-*`node liri.js spotify-this-song '<song name here>'`*
+*`node liri.js spotify-this-song '<song name here>'`*<br>
 	This will show the following information about the song using the Spotify API.  It will display a list of albums with that song title, displaying `artist(s)`, `title`, `album name`, and `preview URL`
 
-*`node liri.js movie-this '<movie name here>'`*
+*`node liri.js movie-this '<movie name here>'`*<br>
 	This will output information about the movie using the OMDB API.  The following information will be displayed:
 	   * Title of the movie.
        * Year the movie came out.
@@ -22,7 +22,7 @@
        * Plot of the movie.
        * Actors in the movie.
 
-*`node liri.js do-what-it-says`*
+*`node liri.js do-what-it-says`*<br>
 	This runs a random command that is stored on the `random.txt` file
 
 
