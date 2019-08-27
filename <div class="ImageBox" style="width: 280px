@@ -1,0 +1,18 @@
+         <div class="ImageBox" style="width: 280px; height: 189px; overflow: hidden; border: 2px solid #CCC; float: right; margin: 0 0 10px 10px;">
+            <div class="Slides">
+               <img alt="slide-01" src="https://www.saintdavids.org/portal/site.images/dnasummer2019.jpg">
+               <img alt="slide-02" src="https://www.saintdavids.org/portal/site.images/museumsummer2019.jpg"> 
+               <img alt="slide-04" src="https://www.saintdavids.org/portal/site.images/art1.jpg"> 
+               <img alt="slide-04" src="https://www.saintdavids.org/portal/site.images/art2.jpg"> 
+               <img alt="slide-04" src="https://www.saintdavids.org/portal/site.images/salamancasummer1.jpg"> 
+               <img alt="slide-04" src="https://www.saintdavids.org/portal/site.images/salamanca2.jpg"> 
+               <img alt="slide-04" src="https://www.saintdavids.org/portal/site.images/gym1.jpg"> 
+            </div>
+         </div>
+
+         <style>
+
+
+            #Sliders
+
+         </style>

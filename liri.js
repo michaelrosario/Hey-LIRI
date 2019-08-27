@@ -19,7 +19,7 @@ var userInput = process.argv;
 var command = userInput[2];
 //console.log("command",command);
 
-var commandValue = userInput[3];
+var commandValue = userInput.slice(3).join(" ");
 //console.log("commandValue",commandValue);
 
 runLIRI(command,commandValue);
@@ -49,9 +49,9 @@ function runLIRI(command,commandValue){
 	    console.error(`
 	    	I'M SORRY I DO NOT KNOW WHAT YOU ADDED, USE THESE SPECIFIC COMMANDS
 	    	--------------------------------------------------------------------
-	    	node liri concert-this '<artist/band name here>'
-	    	node liri spotify-this-song '<song name here>'
-	    	node liri movie-this '<movie name here>'
+	    	node liri concert-this <artist/band name here>
+	    	node liri spotify-this-song <song name here>
+	    	node liri movie-this <movie name here>
 	    	node liri do-what-it-says
 	    `);
 	    break;
@@ -188,7 +188,7 @@ function spotifyThis(input){
 		});
 		
 	} else {
-
+		
 		console.error("Invalid input for spotify-this-song... for now here is 'The Sign' by Ace of Base");
 		spotifyThis("The Sign by Ace of Base");
 
